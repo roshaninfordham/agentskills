@@ -61,6 +61,41 @@ test('search returns nothing for a query that matches nothing', async () => {
   assert.deepEqual(await searchSkills('zzzzqqqq'), []);
 });
 
+test('search ranks conversational task descriptions correctly', async () => {
+  // How an agent actually phrases it -- prose, not keywords.
+  const cases = [
+    ['how do I write a PR that gets merged', 'writing-pull-requests-that-merge'],
+    ['untrusted input buffer sizes', 'finding-integer-truncation-bugs'],
+    ['there is a bug report, where do I start', 'reproducing-before-fixing'],
+    ['is this project ok with AI help', 'respecting-project-ai-policy'],
+    ['first contribution to someone elses repo', 'contributing-to-unfamiliar-repos'],
+  ];
+  for (const [query, expected] of cases) {
+    const [top] = await searchSkills(query);
+    assert.equal(top?.name, expected, `"${query}" should rank ${expected} first`);
+  }
+});
+
+test('a short query term must match a whole word, not a substring', async () => {
+  // "pr" must not match project/prohibited/preparing and drown the real result.
+  const results = await searchSkills('pr');
+  for (const skill of results) {
+    const words = `${skill.name} ${skill.tags.join(' ')} ${skill.description}`
+      .toLowerCase()
+      .split(/[^a-z0-9]+/);
+    assert.ok(words.includes('pr'), `${skill.name} matched "pr" as a substring`);
+  }
+});
+
+test('a query of only stopwords matches nothing, not everything', async () => {
+  assert.deepEqual(await searchSkills('how do I get the'), []);
+});
+
+test('an empty query lists everything, so browsing still works', async () => {
+  const { skills } = await loadRegistry();
+  assert.equal((await searchSkills('')).length, skills.length);
+});
+
 test('getSkill returns a body and the raw source', async () => {
   const skill = await getSkill('reproducing-before-fixing');
   assert.ok(skill.body.length > 100);

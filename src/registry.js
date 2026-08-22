@@ -75,6 +75,32 @@ async function listReferences(folder) {
 }
 
 /**
+ * Words that carry no signal in a task description. Dropping them keeps a
+ * conversational query ("how do I write a PR that gets merged") scoring on the
+ * words that matter.
+ */
+const STOPWORDS = new Set([
+  'the', 'and', 'for', 'you', 'your', 'are', 'was', 'how', 'what', 'why', 'who',
+  'when', 'get', 'gets', 'got', 'can', 'that', 'this', 'with', 'from', 'into',
+  'have', 'has', 'does', 'did', 'should', 'would', 'could', 'about', 'some',
+  'any', 'all', 'not', 'but', 'out', 'off', 'its', 'it', 'is', 'do', 'my', 'me',
+  'need', 'want', 'help', 'make', 'made', 'use', 'using', 'am', 'be', 'to', 'of',
+  'in', 'on', 'at', 'by', 'an', 'a', 'i',
+]);
+
+const words = (text) => text.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+
+/**
+ * Does `term` match `field`? A short term must match a whole word -- otherwise
+ * "pr" hits "project", "prohibited" and "preparing" and drowns the real result.
+ * Longer terms may match as a prefix, so "reproduce" finds "reproducing".
+ */
+function matches(term, fieldWords) {
+  if (term.length <= 3) return fieldWords.includes(term);
+  return fieldWords.some((w) => w.startsWith(term) || term.startsWith(w));
+}
+
+/**
  * Rank skills against a free-text query. Scoring favours an exact name, then
  * tags, then description matches, so "rebase conflict" finds a git skill whose
  * name never says "rebase".
@@ -84,25 +110,33 @@ async function listReferences(folder) {
  */
 export async function searchSkills(query, limit = 10) {
   const { skills } = await loadRegistry();
-  const terms = String(query || '')
-    .toLowerCase()
-    .split(/[^a-z0-9]+/)
-    .filter((t) => t.length > 1);
+  const raw = words(String(query || ''));
+  // An empty query means "show me everything". A query that is nothing but
+  // stopwords carries no signal, so it matches nothing rather than everything.
+  if (!raw.length) return skills.slice(0, limit);
 
-  if (!terms.length) return skills.slice(0, limit);
+  const search = raw.filter((t) => t.length > 1 && !STOPWORDS.has(t));
+  if (!search.length) return [];
 
   const scored = skills.map((skill) => {
     const name = skill.name.toLowerCase();
-    const tags = skill.tags.join(' ').toLowerCase();
-    const description = skill.description.toLowerCase();
+    const nameWords = words(skill.name);
+    const tagWords = words(skill.tags.join(' '));
+    const descWords = words(skill.description);
 
     let score = 0;
-    for (const term of terms) {
-      if (name === term) score += 20;
-      else if (name.includes(term)) score += 8;
-      if (tags.includes(term)) score += 4;
-      if (description.includes(term)) score += 2;
+    for (const term of search) {
+      if (name === term) score += 40;
+      else if (matches(term, nameWords)) score += 8;
+      if (matches(term, tagWords)) score += 4;
+      if (matches(term, descWords)) score += 2;
     }
+    // Reward covering more of the query rather than hitting one word hard.
+    const covered = search.filter(
+      (t) => matches(t, nameWords) || matches(t, tagWords) || matches(t, descWords),
+    ).length;
+    score += covered * 3;
+
     return { skill, score };
   });
 

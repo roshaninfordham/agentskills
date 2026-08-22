@@ -1,6 +1,6 @@
 {
   "name": "openagentskills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Open library of portable skills for AI agents. Procedural knowledge any agent can discover and load on demand \u2014 via MCP, CLI, or plain markdown.",
   "keywords": [
     "agent",
