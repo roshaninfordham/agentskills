@@ -11,13 +11,13 @@ const bold = (s) => (tty() ? `\x1b[1m${s}\x1b[0m` : s);
 const dim = (s) => (tty() ? `\x1b[2m${s}\x1b[0m` : s);
 
 const HELP = `
-${bold('agentskills')} — portable skills for AI agents
+${bold('openagentskills')} — portable skills for AI agents
 
-  ${bold('npx agentskills list')}                    every skill, with token cost
-  ${bold('npx agentskills search')} <query>          find a skill by what you need
-  ${bold('npx agentskills show')} <name>             print a skill
-  ${bold('npx agentskills add')} <name> [--target T] install into this project
-  ${bold('npx agentskills mcp')}                     run the MCP server on stdio
+  ${bold('npx openagentskills list')}                    every skill, with token cost
+  ${bold('npx openagentskills search')} <query>          find a skill by what you need
+  ${bold('npx openagentskills show')} <name>             print a skill
+  ${bold('npx openagentskills add')} <name> [--target T] install into this project
+  ${bold('npx openagentskills mcp')}                     run the MCP server on stdio
 
 Targets for --target (auto-detected when omitted):
 ${Object.entries(TARGETS)
@@ -110,7 +110,7 @@ async function main() {
       return;
 
     default:
-      throw new Error(`Unknown command "${command}". Run "agentskills help".`);
+      throw new Error(`Unknown command "${command}". Run "openagentskills help".`);
   }
 }
 

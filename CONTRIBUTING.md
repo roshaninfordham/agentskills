@@ -102,7 +102,7 @@ your skill so the package works without a build step.
 
 ## Code changes
 
-Zero runtime dependencies is a hard constraint — it is why `npx agentskills`
+Zero runtime dependencies is a hard constraint — it is why `npx openagentskills`
 starts instantly and why the package has no supply chain. A change that adds a
 dependency needs a strong argument.
 

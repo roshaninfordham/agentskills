@@ -1,5 +1,5 @@
 {
-  "name": "agentskills",
+  "name": "openagentskills",
   "version": "0.1.0",
   "description": "Open library of portable skills for AI agents. Procedural knowledge any agent can discover and load on demand \u2014 via MCP, CLI, or plain markdown.",
   "keywords": [
@@ -33,6 +33,7 @@
     "node": ">=18"
   },
   "bin": {
+    "openagentskills": "src/cli.js",
     "agentskills": "src/cli.js"
   },
   "main": "src/index.js",

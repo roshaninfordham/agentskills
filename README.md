@@ -2,13 +2,15 @@
 
 **An open library of portable skills for AI agents.**
 
+> Published on npm as [`openagentskills`](https://www.npmjs.com/package/openagentskills).
+
 A *skill* is procedural knowledge an agent loads when it needs it — how to
 reproduce a bug before fixing it, how to find integer-truncation bugs in a
 parser, how to write a pull request that actually merges. Plain markdown, usable
 by any agent, in any harness.
 
 ```bash
-npx agentskills list
+npx openagentskills list
 ```
 
 No install, no config, no API key.
@@ -45,7 +47,7 @@ costs zero resident tokens.
 Claude Code:
 
 ```bash
-claude mcp add agentskills -- npx -y agentskills mcp
+claude mcp add agentskills -- npx -y openagentskills mcp
 ```
 
 Anything else that speaks MCP:
@@ -53,7 +55,7 @@ Anything else that speaks MCP:
 ```json
 {
   "mcpServers": {
-    "agentskills": { "command": "npx", "args": ["-y", "agentskills", "mcp"] }
+    "agentskills": { "command": "npx", "args": ["-y", "openagentskills", "mcp"] }
   }
 }
 ```
@@ -64,7 +66,7 @@ The agent then calls `find_skill("recovering a rebase that conflicted")` and
 ### As files in your project
 
 ```bash
-npx agentskills add reproducing-before-fixing
+npx openagentskills add reproducing-before-fixing
 ```
 
 The target is auto-detected; override it with `--target`:
@@ -80,11 +82,11 @@ The target is auto-detected; override it with `--target`:
 ### From code
 
 ```bash
-npm install agentskills
+npm install openagentskills
 ```
 
 ```js
-import { searchSkills, getSkill } from 'agentskills';
+import { searchSkills, getSkill } from 'openagentskills';
 
 const [best] = await searchSkills('untrusted input buffer sizes');
 const { body } = await getSkill(best.name);
@@ -98,7 +100,7 @@ Every skill is a markdown file. Read them
 [in this repo](./skills), or fetch the index cold:
 
 ```bash
-curl https://unpkg.com/agentskills/registry.json
+curl https://unpkg.com/openagentskills/registry.json
 ```
 
 ~60 tokens per skill, enough to decide what to load.
