@@ -1,0 +1,85 @@
+{
+  "version": "0.1.0",
+  "skills": [
+    {
+      "name": "contributing-to-unfamiliar-repos",
+      "description": "Use when preparing a change to a repository you do not maintain — an open-source contribution, a PR to another team's service, or any codebase whose reviewers you do not know. Covers what to read first, how to scope the change, and what gets a patch rejected.",
+      "tags": [
+        "open-source",
+        "code-review",
+        "git",
+        "github",
+        "collaboration",
+        "pull-request"
+      ],
+      "folder": "contributing-to-unfamiliar-repos",
+      "path": "skills/contributing-to-unfamiliar-repos/SKILL.md",
+      "tokens": 836,
+      "references": []
+    },
+    {
+      "name": "finding-integer-truncation-bugs",
+      "description": "Use when auditing or reviewing code that parses untrusted input, computes buffer sizes, or converts between integer widths — finds the truncation and overflow bugs that turn into heap corruption, and shows where they hide.",
+      "tags": [
+        "security",
+        "memory-safety",
+        "c",
+        "cpp",
+        "rust",
+        "parsing",
+        "code-review",
+        "overflow"
+      ],
+      "folder": "finding-integer-truncation-bugs",
+      "path": "skills/finding-integer-truncation-bugs/SKILL.md",
+      "tokens": 775,
+      "references": []
+    },
+    {
+      "name": "reproducing-before-fixing",
+      "description": "Use when starting on any bug report, test failure, or unexpected behaviour — establishes a reliable reproduction and a failing test before any code changes, so the fix can be proven rather than assumed.",
+      "tags": [
+        "debugging",
+        "testing",
+        "bugs",
+        "verification",
+        "root-cause"
+      ],
+      "folder": "reproducing-before-fixing",
+      "path": "skills/reproducing-before-fixing/SKILL.md",
+      "tokens": 678,
+      "references": []
+    },
+    {
+      "name": "respecting-project-ai-policy",
+      "description": "Use when contributing code to a project that may have rules about AI assistance — check before writing, since some projects require disclosure and forbid AI-written pull request text, with bans as the stated penalty.",
+      "tags": [
+        "open-source",
+        "ai-policy",
+        "disclosure",
+        "ethics",
+        "pull-request",
+        "contributing"
+      ],
+      "folder": "respecting-project-ai-policy",
+      "path": "skills/respecting-project-ai-policy/SKILL.md",
+      "tokens": 771,
+      "references": []
+    },
+    {
+      "name": "writing-pull-requests-that-merge",
+      "description": "Use when opening a pull request on a project you do not maintain — covers extracting the project's house style from its merge history, and what a reviewer needs to see before they can say yes.",
+      "tags": [
+        "pull-request",
+        "code-review",
+        "open-source",
+        "github",
+        "communication"
+      ],
+      "folder": "writing-pull-requests-that-merge",
+      "path": "skills/writing-pull-requests-that-merge/SKILL.md",
+      "tokens": 747,
+      "references": []
+    }
+  ]
+}

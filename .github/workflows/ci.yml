@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22, 24]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Validate skills
+        run: npm run validate
+      - name: Test
+        run: npm test
+
+  registry-is-current:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Rebuild the registry
+        run: npm run registry
+      - name: Fail if it differs from the committed copy
+        run: |
+          if ! git diff --exit-code registry.json; then
+            echo "::error::registry.json is stale. Run 'npm run registry' and commit the result."
+            exit 1
+          fi
