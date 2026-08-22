@@ -1,6 +1,6 @@
 {
   "name": "openagentskills",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Open library of portable skills for AI agents. Procedural knowledge any agent can discover and load on demand \u2014 via MCP, CLI, or plain markdown.",
   "keywords": [
     "agent",
@@ -57,6 +57,8 @@
     "registry": "node scripts/build-registry.js",
     "validate": "node scripts/validate.js",
     "test": "node --test test/*.test.js",
-    "prepublishOnly": "npm run registry && npm run validate && npm test"
+    "prepublishOnly": "npm run registry && npm run validate && npm test",
+    "new": "node scripts/new-skill.js",
+    "check": "npm run registry && npm run validate && npm test"
   }
 }

@@ -160,17 +160,57 @@ The `description` is the hardest part to write and the most important: it is the
 
 ## Contributing
 
-Skills are welcome, and the bar is "would this have saved you a day?"
+**Anyone, anywhere. That is the whole point.**
+
+Every good engineer knows things no model does — the check that catches the bug,
+the step everyone skips, the convention that's obvious once someone tells you.
+That knowledge is worth more written down than in your head, and this is a place
+to put it.
+
+You do not need to ask permission. Open a PR.
 
 ```bash
 git clone https://github.com/roshaninfordham/agentskills
 cd agentskills
-mkdir -p skills/my-skill && $EDITOR skills/my-skill/SKILL.md
-npm run registry && npm run validate && npm test
+npm run new -- my-skill-name --author "Your Name"
 ```
 
-CI checks that frontmatter parses, `name` matches the folder, the description
-says *when*, and the body fits the token budget. See [CONTRIBUTING.md](./CONTRIBUTING.md).
+That writes a valid skill with the structure in place. Fill in the TODOs, then:
+
+```bash
+npm run check     # registry + validation + tests
+```
+
+Open the PR. CI runs the same checks, so you'll know before a human looks.
+
+### The bar
+
+**Would this have saved someone a day?**
+
+That's it. Not "is it clever", not "is it long". A skill is procedural knowledge
+— the thing an experienced person does without thinking, that an agent has no way
+to know.
+
+| Good | Not this |
+|---|---|
+| A workflow with an expensive failure mode | A tutorial for library X |
+| A checklist experts follow and beginners don't know exists | Something models already do reliably |
+| A class of bug, plus the pattern that finds it | Personal preference stated as practice |
+| A convention that varies by ecosystem and is never written down | Advice so general it says nothing |
+
+### You get the credit
+
+Set `author:` in your skill's frontmatter and your name appears in listings,
+in the registry, and on the skill itself. Skills belong to the people who wrote
+them.
+
+### Not sure if your idea fits?
+
+[Open a proposal](https://github.com/roshaninfordham/agentskills/issues/new?template=propose-a-skill.yml)
+and get feedback before you spend the time. Or just write it — a PR is a fine
+way to start the conversation.
+
+Full guide: [CONTRIBUTING.md](./CONTRIBUTING.md) · [Code of Conduct](./CODE_OF_CONDUCT.md)
 
 ---
 

@@ -1,0 +1,49 @@
+name: Propose a skill
+description: You want to write a skill. Sketch it here first so you don't waste effort.
+title: "Skill: "
+labels: ["skill proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You don't need permission to open a PR — this is for getting feedback
+        before you spend the time. Either route is fine.
+  - type: input
+    id: name
+    attributes:
+      label: Skill name
+      description: lowercase-with-hyphens. Name the situation, not the topic.
+      placeholder: recovering-a-conflicted-rebase
+    validations: { required: true }
+  - type: textarea
+    id: description
+    attributes:
+      label: When should an agent load this?
+      description: >
+        Write it as "Use when ...". This becomes the description field, and it is
+        the only text an agent sees when deciding whether to load your skill.
+      placeholder: Use when a rebase has conflicted and you need to recover without losing work.
+    validations: { required: true }
+  - type: textarea
+    id: rule
+    attributes:
+      label: The rule
+      description: If the reader remembers one thing, what is it?
+    validations: { required: true }
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How do you know this works?
+      description: >
+        Where did this come from — an incident, a code review you kept repeating,
+        a mistake you watched an agent make? Concrete beats theoretical.
+    validations: { required: true }
+  - type: checkboxes
+    id: bar
+    attributes:
+      label: The bar
+      options:
+        - label: This would have saved someone a day
+          required: true
+        - label: It is procedural knowledge, not library documentation that will go stale
+          required: true

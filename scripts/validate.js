@@ -61,6 +61,12 @@ for (const folder of folders) {
 
   if (data.tags && !Array.isArray(data.tags)) fail(folder, 'tags must be [a, b, c]');
 
+  // Keyed off the scaffold's sentinel rather than the word TODO, which a skill
+  // may legitimately discuss.
+  if (body.includes('<!-- UNFINISHED:')) {
+    fail(folder, 'is still the unfinished scaffold — replace the TODOs and delete the UNFINISHED line');
+  }
+
   if (!body) {
     fail(folder, 'has no body');
   } else {

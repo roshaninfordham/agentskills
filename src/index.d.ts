@@ -5,6 +5,8 @@ export interface SkillMeta {
   /** When to use this skill. The only text an agent sees when choosing. */
   description: string;
   tags: string[];
+  /** Who wrote the skill. Optional, and credited in listings. */
+  author: string;
   /** Folder name under skills/. */
   folder: string;
   /** Path to SKILL.md, relative to the package root. */

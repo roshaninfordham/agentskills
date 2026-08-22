@@ -28,9 +28,14 @@ Poor candidates:
 ## Writing one
 
 ```bash
-mkdir -p skills/my-skill
-$EDITOR skills/my-skill/SKILL.md
+npm run new -- my-skill --author "Your Name" --tags git,debugging
 ```
+
+That scaffolds a valid skill with the structure already in place. Replace the
+TODOs and delete the `UNFINISHED` line at the bottom — validation fails while it
+is still there, so you cannot accidentally ship a template.
+
+The shape it gives you:
 
 ```markdown
 ---
@@ -92,9 +97,7 @@ Reference the file from the body so the agent knows when it is worth loading.
 ## Before you open a PR
 
 ```bash
-npm run registry   # regenerate registry.json — commit the result
-npm run validate   # the same checks CI runs
-npm test
+npm run check      # registry + validation + tests, all three
 ```
 
 `registry.json` is generated. Never edit it by hand, and always commit it with
@@ -107,3 +110,18 @@ starts instantly and why the package has no supply chain. A change that adds a
 dependency needs a strong argument.
 
 Tests are `node:test`, no framework.
+
+## Credit
+
+Set `author:` in your frontmatter and your name appears in `agentskills list`,
+in `registry.json`, and on the skill itself. It is optional, and it is yours.
+
+```yaml
+---
+name: my-skill
+description: Use when ...
+tags: [a, b]
+author: Your Name
+version: 1.0.0
+---
+```

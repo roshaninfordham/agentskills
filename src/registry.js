@@ -56,6 +56,7 @@ async function readSkillMeta(folder) {
     name: data.name || folder,
     description: data.description || '',
     tags: Array.isArray(data.tags) ? data.tags : [],
+    author: data.author || '',
     folder,
     path: `skills/${folder}/SKILL.md`,
     tokens: estimateTokens(body),

@@ -53,7 +53,10 @@ function printList(skills) {
   for (const skill of skills) {
     console.log(`${bold(skill.name.padEnd(width))}  ${dim(`~${skill.tokens}t`)}`);
     console.log(`${pad}${skill.description}`);
-    if (skill.tags.length) console.log(`${pad}${dim(skill.tags.join(', '))}`);
+    const meta = [skill.tags.join(', '), skill.author && `by ${skill.author}`]
+      .filter(Boolean)
+      .join('  ·  ');
+    if (meta) console.log(`${pad}${dim(meta)}`);
     console.log();
   }
 }

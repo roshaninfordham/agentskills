@@ -1,0 +1,22 @@
+name: Request a skill
+description: You want a skill that doesn't exist, but you're not the one to write it.
+title: "Request: "
+labels: ["skill request", "help wanted"]
+body:
+  - type: textarea
+    id: situation
+    attributes:
+      label: What situation should this cover?
+      placeholder: Agents keep doing X when they should do Y, because they don't know Z.
+    validations: { required: true }
+  - type: textarea
+    id: cost
+    attributes:
+      label: What goes wrong without it?
+      description: The failure it would prevent. This is what tells us the priority.
+    validations: { required: true }
+  - type: input
+    id: expert
+    attributes:
+      label: Who would know this?
+      description: A person, a doc, a talk — anything that helps whoever picks it up.

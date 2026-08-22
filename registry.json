@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "skills": [
     {
       "name": "contributing-to-unfamiliar-repos",
@@ -12,6 +12,7 @@
         "collaboration",
         "pull-request"
       ],
+      "author": "",
       "folder": "contributing-to-unfamiliar-repos",
       "path": "skills/contributing-to-unfamiliar-repos/SKILL.md",
       "tokens": 836,
@@ -30,6 +31,7 @@
         "code-review",
         "overflow"
       ],
+      "author": "",
       "folder": "finding-integer-truncation-bugs",
       "path": "skills/finding-integer-truncation-bugs/SKILL.md",
       "tokens": 775,
@@ -45,6 +47,7 @@
         "verification",
         "root-cause"
       ],
+      "author": "",
       "folder": "reproducing-before-fixing",
       "path": "skills/reproducing-before-fixing/SKILL.md",
       "tokens": 678,
@@ -61,6 +64,7 @@
         "pull-request",
         "contributing"
       ],
+      "author": "",
       "folder": "respecting-project-ai-policy",
       "path": "skills/respecting-project-ai-policy/SKILL.md",
       "tokens": 771,
@@ -76,6 +80,7 @@
         "github",
         "communication"
       ],
+      "author": "",
       "folder": "writing-pull-requests-that-merge",
       "path": "skills/writing-pull-requests-that-merge/SKILL.md",
       "tokens": 747,
